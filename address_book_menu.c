@@ -107,6 +107,13 @@ Status menu(AddressBook *address_book)
 		{
 			case e_add_contact:
 				/* Add your implementation to call add_contacts function here */
+				address_book -> list = malloc(sizeof(ContactInfo));
+			        for (int i = 0; i < PHONE_NUMBER_COUNT; i++)
+				{
+						strcpy(address_book -> list -> phone_numbers[i], "");
+				}
+				add_contacts(address_book);
+				return save_prompt(address_book);
 				break;
 			case e_search_contact:
 				search_contact(address_book);
@@ -139,8 +146,7 @@ Status add_contacts(AddressBook *address_book)
             {
                     menu_header("Please select an option:\n ");
                     show_menu();
-                    option = get_option(NUM, "");
-                    __fpurge(stdin);
+                    option = get_option(NUM, "");              
                     if (option != e_second_opt && !AddName)
                     {
                             get_option(NONE, "Add a name!\n");
@@ -194,14 +200,13 @@ Status edit_contact(AddressBook *address_book)
 Status delete_contact(AddressBook *address_book)
 {
 	/* Add the functionality for delete contacts here */
-			int option, sr_no;
+		int option, sr_no;
 		char str[EMAIL_ID_LEN];
 		do
 		{
 				menu_header("Choose the way you want to delete a contact?\n\n0. S. No");
 				show_menu();
 				option = get_option(NUM, "");
-				__fpurge(stdin);
 				switch (option)
 				{
 						case e_first_opt://Sr. No.
