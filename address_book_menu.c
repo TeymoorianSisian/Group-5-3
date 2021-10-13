@@ -194,4 +194,77 @@ Status edit_contact(AddressBook *address_book)
 Status delete_contact(AddressBook *address_book)
 {
 	/* Add the functionality for delete contacts here */
+			int option, sr_no;
+		char str[EMAIL_ID_LEN];
+		do
+		{
+				menu_header("Choose the way you want to delete a contact?\n\n0. S. No");
+				show_menu();
+				option = get_option(NUM, "");
+				__fpurge(stdin);
+				switch (option)
+				{
+						case e_first_opt://Sr. No.
+								printf("Enter the sr no: ");
+								scanf("%d", &sr_no);
+								if (search_serial_num(address_book, "**", sr_no) > 0)
+								{
+										printf("Sr No. %d is found in the Addressbook\nThe entire contact is deleted.\n", sr_no);
+										delete_contact(address_book);
+								}
+								else
+										printf("Sr No. not found!\nFail to delete the entered name!\n");
+								break;
+						case e_second_opt://Name
+								printf("Enter the name you want to delete: ");
+								scanf("%[^\n]", str);
+								if (search_serial_num(address_book, str, 0) > 0)
+								{
+										printf("Name %s is found in the Addressbook\nThe entire contact is deleted..\n", str);
+										delete_contact(address_book);
+								}
+								else
+										printf("Name is not found!\nFail to delete the entered name!!\n");
+								break;
+						case e_third_opt://Phone Number
+								printf("Enter the phone no. you want to delete: ");
+								scanf("%[^\n]", str);
+								if (search_serial_num(address_book, str, 0) > 0)
+								{
+										printf("Phone no. %s is found in the Addressbook\nThe entire contact is deleted..\n", str);
+										delete_contact(address_book);
+								}
+								else
+										printf("Phone no. is not found!\nFail to delete the entered phone number!\n");
+								break;
+						case e_fourth_opt://Email address
+								printf("Enter the email address you want to delete: ");
+								scanf("%[^\n]", str);
+								if (search_serial_num(address_book, str, 0) > 0)
+								{
+										printf("Email Id %s is found in the Addressbook\nThe entire contact is deleted!\n", str);
+										delete_contact(address_book);
+								}
+								else
+										printf("Email Id is not found!\nFail to delete the given email Id!!\n");
+								break;
+						case e_fifth_opt://Back
+								break;
+						case e_no_opt:
+								break;
+						default://Invalid option
+								printf("Invalid option!!\n");
+				}
+		} while (option != e_fifth_opt);
+		return e_success;
 }
+
+void show_menu(void)
+{
+		printf("1. Name\n");
+		printf("2. Phone Number\n");
+		printf("3. Email Address\n");
+		printf("4. Back\n\n");
+		printf("Please select an option: ");
+}
+
