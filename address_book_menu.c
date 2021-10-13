@@ -19,6 +19,23 @@ int get_option(int type, const char *msg)
 	 */ 
 
 	/* Fill the code to add above functionality */
+	char choice;
+	if (type == NONE)
+	{
+		printf("%s", msg);
+		return 0;
+	}
+	else if (type == NUM)
+	{
+		scanf("%d", &type);//using same type of variable
+		return type;
+	}
+	else 
+	{
+		printf("%s", msg);
+		scanf("%c", &choice);
+		return (choice == '\n') ? e_no_opt : choice;
+	}
 }
 
 Status save_prompt(AddressBook *address_book)
