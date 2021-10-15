@@ -1,18 +1,18 @@
-#ifndef ABK_MENUS_H
-#define ABK_MENUS_H
+//#ifndef ABK_MENUS_H
+#ifndef ADDRESS_BOOK_MENU_H
+//#define ABK_MENUS_H
+#define ADDRESS_BOOK_MENU_H
 
 #include "address_book.h"
 
-#define	NONE							0
-#define	NUM								1
-#define	CHAR							2
+#define    NONE                            0
+#define    NUM                                1
+#define    CHAR                            2
 
-#define WINDOW_SIZE						5
+#define WINDOW_SIZE                        5
 
 void menu_header(const char *str);
 void main_menu(void);
-void show_menu(void);
-int search_serial_num(AddressBook* address_book, char* search_str, int sr_no);
 Status menu(AddressBook *address_book);
 Status save_prompt(AddressBook *address_book);
 Status add_contacts(AddressBook *address_book);
